@@ -1,15 +1,14 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise=require('api-gateway');
 
-let apiCatalog = require('.routes/api-catalog');
+var index = require('./routes/index');
+var apiCatalog = require('./routes/api-catalog');
 
 var app = express();
 
@@ -24,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', index);
 /**
  * Database Connection
  */
