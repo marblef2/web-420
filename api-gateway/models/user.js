@@ -8,7 +8,7 @@ let userSchema = mongoose.Schema({
     password: String,
     email: String
 });
-module.exports=mongoose.model('User', userSchema);
+const User = module.exports=mongoose.model('User', userSchema);
 
 /**
  Database queries
@@ -24,3 +24,8 @@ module.exports.getById = (id, callback) => {
     var query = {_id: id};
     User.findById(query, callback);
 }
+
+module.exports.getOne = (e, callback) => {
+    var query = {email: e};
+    User.findOne(query, callback);
+};
